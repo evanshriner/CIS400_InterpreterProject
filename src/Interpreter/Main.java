@@ -1,4 +1,4 @@
-package com.InterpreterProject;
+package Interpreter;
 
 import java.util.Scanner;
 
@@ -8,9 +8,6 @@ public class Main {
                                               " by enter (carriage return) when you would like to evaluate it. Enter x to quit.";
 
     private static final String endPrompt = "Ending program...";
-
-    private static final String parseError = "The expression does not match the specified grammar. Please enter" +
-                                             " a valid expression.";
 
     public static void main(String[] args) {
 
@@ -32,10 +29,10 @@ public class Main {
 
                 CalculatorLanguageInterpreter interpreter = new CalculatorLanguageInterpreter(expression);
 
-                if (interpreter.parsable()) {
+                if (interpreter.parse()) {
                     System.out.println(interpreter.evaluate());
                 } else {
-                    System.out.println(parseError);
+                    System.out.println(interpreter.getParseErrorCause());
                 }
 
             }
