@@ -168,7 +168,11 @@ public class CalculatorLanguageInterpreter {
 
     public String evaluate() {
         if (evaluationResult != null) {
-            return Double.toString(evaluationResult);
+            if (evaluationResult == Math.floor(evaluationResult)) {
+                return Integer.toString((int)Math.floor(evaluationResult));
+            } else {
+                return Double.toString(evaluationResult);
+            }
         } else {
             return parseNotExecuted;
         }
