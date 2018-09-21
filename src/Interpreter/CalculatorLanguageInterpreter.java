@@ -58,45 +58,9 @@ public class CalculatorLanguageInterpreter {
         return termFollow(calculationResult);
     }
 
-    private double termFollow(double calculationResult) {
-
-        if (getCurrentToken() == '-')
-        {
-            nextToken();
-            return calculationResult - expression();
-        }
-        else if (getCurrentToken() == '/')
-        {
-            nextToken();
-            return calculationResult / expression();
-        }
-        else
-            return calculationResult;
-
-    }
-
     private double term() {
         double value = value();
         return valueFollow(value);
-    }
-
-    private double valueFollow(double calculationResult) {
-
-        if (getCurrentToken() == '+')
-        {
-            nextToken();
-            double nextValue = term();
-            return termFollow(calculationResult + nextValue);
-        }
-        else if (getCurrentToken() == '*')
-        {
-            nextToken();
-            double nextValue = term();
-            return termFollow(calculationResult * nextValue);
-        }
-        else
-            return calculationResult;
-
     }
 
     private double value() {
@@ -115,7 +79,7 @@ public class CalculatorLanguageInterpreter {
         }
 
         if (sign.isPresent()){
-            if (sign.equals('+')) {
+            if (sign.get() == '+') {
                 //return positive of value
                 return Double.parseDouble(value);
             } else {
@@ -165,6 +129,42 @@ public class CalculatorLanguageInterpreter {
 
     }
 
+
+    private double termFollow(double calculationResult) {
+
+        if (getCurrentToken() == '-')
+        {
+            nextToken();
+            return calculationResult - expression();
+        }
+        else if (getCurrentToken() == '/')
+        {
+            nextToken();
+            return calculationResult / expression();
+        }
+        else
+            return calculationResult;
+
+    }
+
+    private double valueFollow(double calculationResult) {
+
+        if (getCurrentToken() == '+')
+        {
+            nextToken();
+            double nextValue = term();
+            return termFollow(calculationResult + nextValue);
+        }
+        else if (getCurrentToken() == '*')
+        {
+            nextToken();
+            double nextValue = term();
+            return termFollow(calculationResult * nextValue);
+        }
+        else
+            return calculationResult;
+
+    }
 
     public String evaluate() {
         if (evaluationResult != null) {
