@@ -16,7 +16,7 @@ public class CalculatorLanguageInterpreter {
     private String parseErrorCause;
 
     public CalculatorLanguageInterpreter(String expression){
-        buffer = expression;
+        buffer = expression.replaceAll("\\s+","");
     }
 
     private void nextToken(){
@@ -33,7 +33,7 @@ public class CalculatorLanguageInterpreter {
         try {
             result = calculation();
         } catch (ParseException e) {
-            parseErrorCause =  e.getMessage();
+            parseErrorCause =  e.getMessage() + e.getErrorOffset();
             return false;
         }
 
@@ -48,31 +48,58 @@ public class CalculatorLanguageInterpreter {
         if (getCurrentToken().equals('=')){
             return calculationResult;
         } else {
-            throw new ParseException("no equals sign at end of expression", position);
+            throw new ParseException("Parse error at character ", position + 1);
         }
 
     }
 
-    private double expression() throws ParseException {
+    private double expression() {
         double calculationResult = term();
         return termFollow(calculationResult);
     }
 
-    private double term() throws ParseException {
-        Number value = value();
+    private double termFollow(double calculationResult) {
 
-        if (value.doubleValue() == Math.ceil(value.doubleValue())) {
-            return valueFollow(value.intValue());
-        } else {
-            return valueFollow(value.doubleValue());
+        if (getCurrentToken() == '-')
+        {
+            nextToken();
+            return calculationResult - expression();
         }
+        else if (getCurrentToken() == '/')
+        {
+            nextToken();
+            return calculationResult / expression();
+        }
+        else
+            return calculationResult;
+
     }
 
-    private int valueFollow(double doubleValue) {
+    private double term() {
+        double value = value();
+        return valueFollow(value);
+    }
+
+    private double valueFollow(double calculationResult) {
+
+        if (getCurrentToken() == '+')
+        {
+            nextToken();
+            double nextValue = term();
+            return termFollow(calculationResult + nextValue);
+        }
+        else if (getCurrentToken() == '*')
+        {
+            nextToken();
+            double nextValue = term();
+            return termFollow(calculationResult * nextValue);
+        }
+        else
+            return calculationResult;
 
     }
 
-    private double value() throws ParseException {
+    private double value() {
         // checks if signed, if does increases position
         Optional<Character> sign = signed();
 
@@ -93,8 +120,7 @@ public class CalculatorLanguageInterpreter {
                 return Double.parseDouble(value);
             } else {
                 // return negative of value
-                String signedValue = "-" + value;
-                return Double.parseDouble(signedValue);
+                return -Double.parseDouble(value);
             }
         } else {
             return Double.parseDouble(value);
@@ -102,24 +128,27 @@ public class CalculatorLanguageInterpreter {
     }
 
     private Optional<Character> floating() {
-        if (getCurrentToken().equals('.'))
+
+        if (getCurrentToken().equals('.')) {
+            return Optional.of('.');
+        } else {
+            return Optional.empty();
+        }
     }
 
     private String unsigned() {
 
-        return digits();
-    }
-
-    private String digits() {
-
         String tempDigits = "";
 
-        while (Character.isDigit(getCurrentToken())) {
+        while (digits()){
             tempDigits += getCurrentToken();
             nextToken();
         }
-
         return tempDigits;
+    }
+
+    private boolean digits() {
+        return Character.isDigit(getCurrentToken());
     }
 
     private Optional<Character> signed() {
@@ -148,7 +177,4 @@ public class CalculatorLanguageInterpreter {
     public String getParseErrorCause() {
         return parseErrorCause;
     }
-
-
-
 }
