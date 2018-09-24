@@ -18,6 +18,7 @@ public class CalculatorLanguageInterpreter {
     public CalculatorLanguageInterpreter(String expression){
         buffer = expression.replaceAll("\\s+","");
     }
+    // test comment
 
     private void nextToken(){
         position++;
