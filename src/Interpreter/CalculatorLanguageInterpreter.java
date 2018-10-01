@@ -3,6 +3,16 @@ package Interpreter;
 import java.text.ParseException;
 import java.util.Optional;
 
+/**
+ * This class is the interpreter object that is used to parse an entered statement by the user.
+ * Using the "Calculator Language" grammar, The interpreter works by using the EBNF grammar recursively to resolve
+ * the input string into its component parts. Below, you will find a procedure for each non-terminal in the grammar.
+ *
+ * To use this interpreter, create a new instance of it, passing the expression into the constructor. then call parse().
+ * In the case of a successful parsing, parse() returns true and the evaluation result will be available with the call evaluate().
+ * In the event of a failed parsing, parse() returns false and the error cause will be available with the call getParseErrorCause().
+ */
+
 class CalculatorLanguageInterpreter {
 
     private String buffer;

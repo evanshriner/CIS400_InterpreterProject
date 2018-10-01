@@ -2,6 +2,14 @@ package Interpreter;
 
 import java.util.Scanner;
 
+/**
+ * This class controls the main loop of the interpreter and allows the user
+ * to control how many statements they wish to input. Upon each new line entered
+ * by the user, this class will create a new instance of the CalculatorLanguageInterpreter
+ * and try to parse the inputted statement. If the parse is successful, the evaluation of the statement
+ * will be printed. If the parse is unsuccessful, the error that was discovered will be printed.
+ */
+
 public class Main {
 
     private static final String startPrompt = "Please input all expressions you would like to test, followed" +
