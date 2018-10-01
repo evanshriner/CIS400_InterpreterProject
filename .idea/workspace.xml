@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="643e789e-9289-4e65-b04c-71f1c4575ade" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CIS400_Interpreter/Interpreter/CalculatorLanguageInterpreter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CIS400_Interpreter/Interpreter/CalculatorLanguageInterpreter.class" afterDir="false" />
-    </list>
+    <list default="true" id="643e789e-9289-4e65-b04c-71f1c4575ade" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +89,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Interpreter/CalculatorLanguageInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2850">
+            <state relative-caret-position="2232">
               <caret line="190" column="4" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -172,7 +169,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538426041040" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538426624252" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -228,7 +225,7 @@
       <workItem from="1537814128830" duration="287000" />
       <workItem from="1537816656822" duration="195000" />
       <workItem from="1537817406962" duration="156000" />
-      <workItem from="1538423788421" duration="2088000" />
+      <workItem from="1538423788421" duration="2446000" />
     </task>
     <task id="LOCAL-00001" summary="floating point fix">
       <created>1538425805780</created>
@@ -241,11 +238,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15113000" />
+    <option name="totallyTimeSpent" value="15471000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21184371" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -256,7 +252,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.26836735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26836735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -265,7 +261,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -298,7 +294,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Interpreter/CalculatorLanguageInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2850">
+        <state relative-caret-position="2232">
           <caret line="190" column="4" lean-forward="true" selection-start-line="190" selection-start-column="4" selection-end-line="190" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
