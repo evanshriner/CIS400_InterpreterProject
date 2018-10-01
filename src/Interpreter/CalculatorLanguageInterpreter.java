@@ -3,7 +3,7 @@ package Interpreter;
 import java.text.ParseException;
 import java.util.Optional;
 
-public class CalculatorLanguageInterpreter {
+class CalculatorLanguageInterpreter {
 
     private String buffer;
 
@@ -15,7 +15,7 @@ public class CalculatorLanguageInterpreter {
 
     private String parseErrorCause;
 
-    public CalculatorLanguageInterpreter(String expression){
+    CalculatorLanguageInterpreter(String expression){
         buffer = expression.replaceAll("\\s+","");
     }
     // test comment
@@ -32,7 +32,7 @@ public class CalculatorLanguageInterpreter {
         }
     }
 
-    public boolean parse() {
+    boolean parse() {
         double result;
 
         try {
@@ -70,35 +70,40 @@ public class CalculatorLanguageInterpreter {
 
     private double value() throws ParseException {
         // checks if signed, if does increases position
-        Optional<Character> sign = signed();
+        try {
+            Optional<Character> sign = signed();
 
-        // gets first part of unsigned value
-        String value = unsigned();
+            // gets first part of unsigned value
+            String value = unsigned();
 
-        // checks for floating point value
-        Optional<Character> floatingPoint = floating();
+            // checks for floating point value
+            Optional<Character> floatingPoint = floating();
 
-        // if floating point value, appends rest of unsigned
-        if (floatingPoint.isPresent()) {
-            value += '.' + unsigned();
-        }
-
-        if (sign.isPresent()){
-            if (sign.get() == '+') {
-                //return positive of value
-                return Double.parseDouble(value);
-            } else {
-                // return negative of value
-                return -Double.parseDouble(value);
+            // if floating point value, appends rest of unsigned
+            if (floatingPoint.isPresent()) {
+                value += '.' + unsigned();
             }
-        } else {
-            return Double.parseDouble(value);
+
+            if (sign.isPresent()) {
+                if (sign.get() == '+') {
+                    //return positive of value
+                    return Double.parseDouble(value);
+                } else {
+                    // return negative of value
+                    return -Double.parseDouble(value);
+                }
+            } else {
+                return Double.parseDouble(value);
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Parse error at character", position + 1 );
         }
     }
 
     private Optional<Character> floating() throws ParseException {
 
         if (getCurrentToken().equals('.')) {
+            nextToken(); // increment so that the unsigned portion is not confused about the dot
             return Optional.of('.');
         } else {
             return Optional.empty();
@@ -171,7 +176,7 @@ public class CalculatorLanguageInterpreter {
 
     }
 
-    public String evaluate() {
+    String evaluate() {
         if (evaluationResult != null) {
             if (evaluationResult == Math.floor(evaluationResult)) {
                 return Integer.toString((int)Math.floor(evaluationResult));
@@ -183,7 +188,7 @@ public class CalculatorLanguageInterpreter {
         }
     }
 
-    public String getParseErrorCause() {
+    String getParseErrorCause() {
         return parseErrorCause;
     }
 }
