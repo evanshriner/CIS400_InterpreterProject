@@ -24,8 +24,12 @@ public class CalculatorLanguageInterpreter {
         position++;
     }
 
-    private Character getCurrentToken() {
-        return buffer.charAt(position);
+    private Character getCurrentToken() throws ParseException {
+        try {
+            return buffer.charAt(position);
+        } catch (StringIndexOutOfBoundsException e){
+            throw new ParseException("Parse error at character ", position + 1);
+        }
     }
 
     public boolean parse() {
@@ -54,17 +58,17 @@ public class CalculatorLanguageInterpreter {
 
     }
 
-    private double expression() {
+    private double expression() throws ParseException {
         double calculationResult = term();
         return termFollow(calculationResult);
     }
 
-    private double term() {
+    private double term() throws ParseException {
         double value = value();
         return valueFollow(value);
     }
 
-    private double value() {
+    private double value() throws ParseException {
         // checks if signed, if does increases position
         Optional<Character> sign = signed();
 
@@ -92,7 +96,7 @@ public class CalculatorLanguageInterpreter {
         }
     }
 
-    private Optional<Character> floating() {
+    private Optional<Character> floating() throws ParseException {
 
         if (getCurrentToken().equals('.')) {
             return Optional.of('.');
@@ -101,7 +105,7 @@ public class CalculatorLanguageInterpreter {
         }
     }
 
-    private String unsigned() {
+    private String unsigned() throws ParseException {
 
         String tempDigits = "";
 
@@ -112,11 +116,11 @@ public class CalculatorLanguageInterpreter {
         return tempDigits;
     }
 
-    private boolean digits() {
+    private boolean digits() throws ParseException {
         return Character.isDigit(getCurrentToken());
     }
 
-    private Optional<Character> signed() {
+    private Optional<Character> signed() throws ParseException {
 
         if (getCurrentToken().equals('+')) {
             nextToken();
@@ -131,7 +135,7 @@ public class CalculatorLanguageInterpreter {
     }
 
 
-    private double termFollow(double calculationResult) {
+    private double termFollow(double calculationResult) throws ParseException {
 
         if (getCurrentToken() == '-')
         {
@@ -148,7 +152,7 @@ public class CalculatorLanguageInterpreter {
 
     }
 
-    private double valueFollow(double calculationResult) {
+    private double valueFollow(double calculationResult) throws ParseException {
 
         if (getCurrentToken() == '+')
         {
